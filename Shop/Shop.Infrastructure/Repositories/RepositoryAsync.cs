@@ -1,5 +1,8 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Shop.Application.Common.Interfaces;
 using Shop.Application.Common.Interfaces.Repositories;
+using Shop.Domain.Common;
 using Shop.Infrastructure.Persistence.Data.INFPort;
 using Shop.Infrastructure.Persistence.Data.INFPortObject;
 using System;
@@ -14,109 +17,99 @@ namespace Shop.Infrastructure.Repositories
     {
 
         #region INFPort Db Context
-        public class INFPort<T> : IRepositoryAsync.INFPortObject<T> where T : class
+        public class INFPort : IRepositoryAsync.INFPort
         {
             private readonly INFPortContext _dbContext;
-
-            public INFPort(INFPortContext dbContext)
+            private readonly IConfiguration _configuration;
+            public INFPort(INFPortContext dbContext, IConfiguration configuration)
             {
                 _dbContext = dbContext;
+                _configuration = configuration;
+            }
+            public string StrConnect => _configuration.GetConnectionString("INFPortConnection");
+            public T GetById<T>( long id) where T : BaseEntity
+            {
+                return _dbContext.Set<T>().SingleOrDefault(e => e.ID == id);
             }
 
-            public IQueryable<T> Entities => _dbContext.Set<T>();
+            public Task<T> GetByIdAsync<T>( long id) where T : BaseEntity
+            {
+                return _dbContext.Set<T>().SingleOrDefaultAsync(e => e.ID == id);
+            }
 
-            public async Task<T> AddAsync(T entity)
+            public Task<List<T>> ListAsync<T>() where T : BaseEntity
+            {
+                return _dbContext.Set<T>().ToListAsync();
+            }
+
+            public async Task<T> AddAsync<T>(T entity) where T : BaseEntity
             {
                 await _dbContext.Set<T>().AddAsync(entity);
+                await _dbContext.SaveChangesAsync();
+
                 return entity;
             }
 
-            public Task DeleteAsync(T entity)
+            public Task UpdateAsync<T>(T entity) where T : BaseEntity
+            {
+                _dbContext.Entry(entity).State = EntityState.Modified;
+                return _dbContext.SaveChangesAsync();
+            }
+
+            public Task DeleteAsync<T>(T entity) where T : BaseEntity
             {
                 _dbContext.Set<T>().Remove(entity);
-                return Task.CompletedTask;
+                return _dbContext.SaveChangesAsync();
             }
 
-            public async Task<List<T>> GetAllAsync()
-            {
-                return await _dbContext
-                    .Set<T>()
-                    .ToListAsync();
-            }
-
-            public async Task<T> GetByIdAsync(int id)
-            {
-                return await _dbContext.Set<T>().FindAsync(id);
-            }
-
-            public async Task<List<T>> GetPagedReponseAsync(int pageNumber, int pageSize)
-            {
-                return await _dbContext
-                    .Set<T>()
-                    .Skip((pageNumber - 1) * pageSize)
-                    .Take(pageSize)
-                    .AsNoTracking()
-                    .ToListAsync();
-            }
-
-            public Task UpdateAsync(T entity)
-            {
-                _dbContext.Entry(entity).CurrentValues.SetValues(entity);
-                return Task.CompletedTask;
-            }
         }
         #endregion
 
         #region INFPortObject Db Context
-        public class INFPortObject<T> : IRepositoryAsync.INFPort<T> where T : class
+        public class INFPortObject : IRepositoryAsync.INFPortObject
         {
             private readonly INFPortObjectContext _dbContext;
-
-            public INFPortObject(INFPortObjectContext dbContext)
+            private readonly IConfiguration _configuration;
+            public INFPortObject(INFPortObjectContext dbContext, IConfiguration configuration)
             {
                 _dbContext = dbContext;
+                _configuration = configuration;
+            }
+            public string StrConnect => _configuration.GetConnectionString("INFPortObjectConnection");
+
+            public T GetById<T>( long id) where T : BaseEntity
+            {
+                return _dbContext.Set<T>().SingleOrDefault(e => e.ID == id);
             }
 
-            public IQueryable<T> Entities => _dbContext.Set<T>();
+            public Task<T> GetByIdAsync<T>( long id) where T : BaseEntity
+            {
+                return _dbContext.Set<T>().SingleOrDefaultAsync(e => e.ID == id);
+            }
 
-            public async Task<T> AddAsync(T entity)
+            public Task<List<T>> ListAsync<T>() where T : BaseEntity
+            {
+                return _dbContext.Set<T>().ToListAsync();
+            }
+
+            public async Task<T> AddAsync<T>(T entity) where T : BaseEntity
             {
                 await _dbContext.Set<T>().AddAsync(entity);
+                await _dbContext.SaveChangesAsync();
+
                 return entity;
             }
 
-            public Task DeleteAsync(T entity)
+            public Task UpdateAsync<T>(T entity) where T : BaseEntity
+            {
+                _dbContext.Entry(entity).State = EntityState.Modified;
+                return _dbContext.SaveChangesAsync();
+            }
+
+            public Task DeleteAsync<T>(T entity) where T : BaseEntity
             {
                 _dbContext.Set<T>().Remove(entity);
-                return Task.CompletedTask;
-            }
-
-            public async Task<List<T>> GetAllAsync()
-            {
-                return await _dbContext
-                    .Set<T>()
-                    .ToListAsync();
-            }
-
-            public async Task<T> GetByIdAsync(int id)
-            {
-                return await _dbContext.Set<T>().FindAsync(id);
-            }
-
-            public async Task<List<T>> GetPagedReponseAsync(int pageNumber, int pageSize)
-            {
-                return await _dbContext
-                    .Set<T>()
-                    .Skip((pageNumber - 1) * pageSize)
-                    .Take(pageSize)
-                    .AsNoTracking()
-                    .ToListAsync();
-            }
-
-            public Task UpdateAsync(T entity)
-            {
-                _dbContext.Entry(entity).CurrentValues.SetValues(entity);
-                return Task.CompletedTask;
+                return _dbContext.SaveChangesAsync();
             }
         }
         #endregion
