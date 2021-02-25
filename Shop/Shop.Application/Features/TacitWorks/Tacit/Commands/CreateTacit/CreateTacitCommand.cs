@@ -1,14 +1,14 @@
+using AutoMapper;
+using MediatR;
+using Shop.Application.Common.Interfaces.Repositories.INFPortObject;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Shop.Application.Features.TacitWorks.Tacit.Commands.CreateTacit
 {
-    public class CreateTacitCommand
+    public class CreateTacitCommand : IRequest<long>
     {
-        public long ID { set; get; }
         public int LocationID { set; get; }
         public int BranchID { set; get; }
         public string Name { set; get; }
@@ -47,8 +47,26 @@ namespace Shop.Application.Features.TacitWorks.Tacit.Commands.CreateTacit
         public string LinkFile { set; get; }
         public string FileNameHistory { get; set; }
         public int TypeTacit { get; set; }
-        public int count { get; set; }
-        public string[] listFileName { get; set; }
-        public string[] listFiles { get; set; }
+        public int Count { get; set; }
+        public string[] ListFileName { get; set; }
+        public string[] ListFiles { get; set; }
+    }
+
+    public class CreateTacitCommandHandler : IRequestHandler<CreateTacitCommand, long>
+    {
+        private readonly ITacitRepository _tacitRepository;
+        private readonly IMapper _mapper;
+
+        public CreateTacitCommandHandler(ITacitRepository tacitRepository, IMapper mapper)
+        {
+            _tacitRepository = tacitRepository;
+            _mapper = mapper;
+        }
+
+        public Task<long> Handle(CreateTacitCommand request, CancellationToken cancellationToken)
+        {
+            var tacit = _mapper.Map<CreateTacitCommand, Domain.Entities.INFPortObject.Tacit>(request);
+            return _tacitRepository.AddTacit(tacit);
+        }
     }
 }

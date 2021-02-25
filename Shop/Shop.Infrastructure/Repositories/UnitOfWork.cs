@@ -1,6 +1,7 @@
 using Shop.Application.Common.Interfaces.Repositories;
 using Shop.Application.Common.Interfaces.Shared;
 using Shop.Infrastructure.Persistence.Data.INFPort;
+using Shop.Infrastructure.Persistence.Data.INFPortObject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,14 +16,13 @@ namespace Shop.Infrastructure.Repositories
         #region INFPort
         public class INFPort : IUnitOfWork.INFPort
         {
-            private readonly IAuthenticatedUserService _authenticatedUserService;
+ 
             private readonly INFPortContext _dbContext;
             private bool disposed;
 
-            public INFPort(INFPortContext dbContext, IAuthenticatedUserService authenticatedUserService)
+            public INFPort(INFPortContext dbContext)
             {
                 _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-                _authenticatedUserService = authenticatedUserService;
             }
 
             public async Task<int> Commit(CancellationToken cancellationToken)
@@ -62,14 +62,12 @@ namespace Shop.Infrastructure.Repositories
         #region INFPortObject
         public class INFPortObject : IUnitOfWork.INFPortObject
         {
-            private readonly IAuthenticatedUserService _authenticatedUserService;
-            private readonly INFPortContext _dbContext;
+            private readonly INFPortObjectContext _dbContext;
             private bool disposed;
 
-            public INFPortObject(INFPortContext dbContext, IAuthenticatedUserService authenticatedUserService)
+            public INFPortObject(INFPortObjectContext dbContext)
             {
                 _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
-                _authenticatedUserService = authenticatedUserService;
             }
 
             public async Task<int> Commit(CancellationToken cancellationToken)

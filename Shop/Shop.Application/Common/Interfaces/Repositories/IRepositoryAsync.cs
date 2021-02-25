@@ -1,3 +1,5 @@
+using Shop.Application.Common.Interfaces.Shared;
+using Shop.Domain.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,38 +10,25 @@ namespace Shop.Application.Common.Interfaces.Repositories
 {
     public interface IRepositoryAsync
     {
-        public interface INFPort<T> where T : class
+        public interface INFPort
         {
-            IQueryable<T> Entities { get; }
-
-            Task<T> GetByIdAsync(int id);
-
-            Task<List<T>> GetAllAsync();
-
-            Task<List<T>> GetPagedReponseAsync(int pageNumber, int pageSize);
-
-            Task<T> AddAsync(T entity);
-
-            Task UpdateAsync(T entity);
-
-            Task DeleteAsync(T entity);
+            string StrConnect { get; }
+            Task<T> GetByIdAsync<T>(long id) where T : BaseEntity;
+            Task<List<T>> ListAsync<T>() where T : BaseEntity;
+            Task<T> AddAsync<T>(T entity) where T : BaseEntity;
+            Task UpdateAsync<T>(T entity) where T : BaseEntity;
+            Task DeleteAsync<T>(T entity) where T : BaseEntity;
         }
 
-        public interface INFPortObject<T> where T : class
+        public interface INFPortObject
         {
-            IQueryable<T> Entities { get; }
+            string StrConnect { get; }
 
-            Task<T> GetByIdAsync(int id);
-
-            Task<List<T>> GetAllAsync();
-
-            Task<List<T>> GetPagedReponseAsync(int pageNumber, int pageSize);
-
-            Task<T> AddAsync(T entity);
-
-            Task UpdateAsync(T entity);
-
-            Task DeleteAsync(T entity);
+            Task<T> GetByIdAsync<T>(long id) where T : BaseEntity;
+            Task<List<T>> ListAsync<T>() where T : BaseEntity;
+            Task<T> AddAsync<T>(T entity) where T : BaseEntity;
+            Task UpdateAsync<T>(T entity) where T : BaseEntity;
+            Task DeleteAsync<T>(T entity) where T : BaseEntity;
         }
     }
 }

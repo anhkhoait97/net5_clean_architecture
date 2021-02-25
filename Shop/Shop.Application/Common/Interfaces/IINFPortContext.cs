@@ -4,8 +4,7 @@ using System;
 
 namespace Shop.Application.Common.Interfaces
 {
-    public interface IINFPortObjectContext : IDisposable
+    public interface IINFPortContext : IDisposable
     {
-        public DbSet<Tacit> Tacit{ get; set; }
     }
 }

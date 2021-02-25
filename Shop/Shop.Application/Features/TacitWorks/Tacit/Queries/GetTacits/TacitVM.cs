@@ -1,10 +1,14 @@
-using Shop.Domain.Common;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Shop.Domain.Entities.INFPortObject
+namespace Shop.Application.Features.TacitWorks.Tacit.Queries.GetTacits
 {
-    public class Tacit : BaseEntity
+    public class TacitVm
     {
+        public long ID { get; set; }
         public string Code { get; set; }
         public string Name { get; set; }
         public int? LocationID { get; set; }
@@ -43,4 +47,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public int? TypeTacit { get; set; }
     }
 }
-

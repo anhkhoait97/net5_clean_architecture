@@ -12,12 +12,12 @@ namespace Shop.Infrastructure.Persistence.Data.INFPortObject
     public class INFPortObjectContext : DbContext, IINFPortObjectContext
     {
         public INFPortObjectContext(
-            DbContextOptions options) : base(options)
+            DbContextOptions<INFPortObjectContext> options) : base(options)
         {
 
         }
 
-        public DbSet<Tacit> Tacits { get; set; }
+        public DbSet<Tacit> Tacit { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
