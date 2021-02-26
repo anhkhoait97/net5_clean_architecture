@@ -18,4 +18,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public int? DepartmentID { get; set; }
     }
 }
-

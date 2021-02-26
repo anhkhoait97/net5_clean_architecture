@@ -29,4 +29,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public int? TypeCore { get; set; }
     }
 }
-

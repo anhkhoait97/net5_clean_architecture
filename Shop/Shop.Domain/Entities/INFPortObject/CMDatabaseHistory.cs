@@ -30,4 +30,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public string RelationshipObject { get; set; }
     }
 }
-

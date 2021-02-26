@@ -1,7 +1,6 @@
 using AutoMapper;
 using MediatR;
 using Shop.Application.Interfaces.INFPortObject;
-using Shop.Domain.Entities.INFPortObject;
 using System;
 using System.Threading;
 using System.Threading.Tasks;

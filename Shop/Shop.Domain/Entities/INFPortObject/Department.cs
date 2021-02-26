@@ -7,4 +7,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public string Description { get; set; }
     }
 }
-

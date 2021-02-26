@@ -22,5 +22,4 @@ namespace Shop.Domain.Entities.INFPortObject
         public string UpdateBy { get; set; }
         public DateTime? UpdateDate { get; set; }
     }
-
 }

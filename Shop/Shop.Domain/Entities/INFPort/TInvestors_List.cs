@@ -1,4 +1,3 @@
-using System;
 namespace Shop.Domain.Entities.INFPort
 {
     public class TInvestors_List

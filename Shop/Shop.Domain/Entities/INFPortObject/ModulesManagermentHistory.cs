@@ -21,4 +21,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public DateTime? CreateDate { get; set; }
     }
 }
-

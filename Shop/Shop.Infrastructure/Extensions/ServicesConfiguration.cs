@@ -25,6 +25,7 @@ namespace Shop.Infrastructure.Extensions
             services.AddRepository();
             services.AddPersistenceContexts(configuration);
         }
+
         public static void AddRepository(this IServiceCollection services)
         {
             services.AddTransient(typeof(IRepositoryAsync.INFPort), typeof(RepositoryAsync.INFPort));
@@ -34,6 +35,7 @@ namespace Shop.Infrastructure.Extensions
             services.AddTransient<ITacitRepository, TacitRepository>();
             services.AddTransient<ICommonRepository, CommonRepository>();
         }
+
         public static void AddAuthenticationScheme(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddMvc(o =>

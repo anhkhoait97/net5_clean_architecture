@@ -35,5 +35,4 @@ namespace Shop.Domain.Entities.INFPortObject
         public int? StartFaceID { get; set; }
         public int? TypeCount { get; set; }
     }
-
 }

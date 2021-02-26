@@ -1,6 +1,5 @@
 using AutoMapper;
 using MediatR;
-using Shop.Application.Features.TacitWorks.TacitFeature.Queries.GetTacits;
 using Shop.Application.Interfaces.INFPortObject;
 using System.Collections.Generic;
 using System.Threading;

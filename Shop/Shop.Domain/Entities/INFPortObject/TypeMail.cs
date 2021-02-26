@@ -16,5 +16,4 @@ namespace Shop.Domain.Entities.INFPortObject
         public string BodyFTN { get; set; }
         public string Description { get; set; }
     }
-
 }

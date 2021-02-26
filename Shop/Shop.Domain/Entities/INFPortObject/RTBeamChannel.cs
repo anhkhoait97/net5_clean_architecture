@@ -35,4 +35,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public long? PopDevice2 { get; set; }
     }
 }
-

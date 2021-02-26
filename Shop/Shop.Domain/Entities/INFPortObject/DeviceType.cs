@@ -26,4 +26,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public int? ValueInside { get; set; }
     }
 }
-

@@ -1,4 +1,5 @@
 using System;
+
 namespace Shop.Domain.Entities.INFPort
 {
     public class API_DeviceAccess

@@ -39,4 +39,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public int? TypeCount { get; set; }
     }
 }
-

@@ -1,10 +1,8 @@
-using AutoMapper;
 using MediatR;
-using Shop.Application.Interfaces.INFPortObject;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Shop.Domain.Entities;
+
 namespace Shop.Application.Features.Example.Test.Commands.Update
 {
     public class UpdateTestCommand : IRequest<long>
@@ -54,7 +52,6 @@ namespace Shop.Application.Features.Example.Test.Commands.Update
 
     public class UpdateTestCommandHandler : IRequestHandler<UpdateTestCommand, long>
     {
-
         public UpdateTestCommandHandler()
         {
         }

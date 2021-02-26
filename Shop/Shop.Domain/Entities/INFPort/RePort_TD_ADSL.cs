@@ -1,4 +1,3 @@
-using System;
 namespace Shop.Domain.Entities.INFPort
 {
     public class RePort_TD_ADSL

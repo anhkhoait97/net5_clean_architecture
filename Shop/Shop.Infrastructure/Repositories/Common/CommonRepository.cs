@@ -241,7 +241,6 @@ namespace Shop.Infrastructure.Repositories.Common
             var inputParam = new DynamicParameters(new
             {
                 LocationID = locationId,
-
             });
             inputParam.Add("Result", dbType: DbType.Int32, direction: ParameterDirection.Output);
             await conn.ExecuteAsync("INFPortObject.dbo.fpt_sp_CheckExistsLocation", inputParam, commandType: CommandType.StoredProcedure);

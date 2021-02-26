@@ -9,4 +9,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public byte[] definition { get; set; }
     }
 }
-

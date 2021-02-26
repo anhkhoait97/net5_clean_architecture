@@ -19,5 +19,4 @@ namespace Shop.Domain.Entities.INFPortObject
         public DateTime? DateConfim { get; set; }
         public long? AppendicesID { get; set; }
     }
-
 }

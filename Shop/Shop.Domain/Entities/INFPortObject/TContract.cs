@@ -1,4 +1,5 @@
 using System;
+
 namespace Shop.Domain.Entities.INFPortObject
 {
     public class TContract
@@ -36,4 +37,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public int? TypeContract { get; set; }
     }
 }
-

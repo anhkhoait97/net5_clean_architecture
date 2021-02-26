@@ -1,19 +1,20 @@
 using FluentValidation;
-using Shop.Application.Interfaces.Common;
 using Shop.Application.Extensions.FluentValidator;
+using Shop.Application.Interfaces.Common;
 
 namespace Shop.Application.Features.TacitWorks.TacitFeature.Commands.CreateTacit
 {
     public class UpdateTestCommandValidator : AbstractValidator<CreateTacitCommand>
     {
         private readonly ICommonRepository _commonRepository;
+
         public UpdateTestCommandValidator(ICommonRepository commonRepository)
         {
             _commonRepository = commonRepository;
             RuleFor(x => x.LocationID)
                     .NotNull()
                     .WithMessage("Vùng miền không được trống")
-                    .MustAsync(async (x,cancellation) => await _commonRepository.IsExistLocation(x))
+                    .MustAsync(async (x, cancellation) => await _commonRepository.IsExistLocation(x))
                     .WithMessage("Vùng miền không tồn tại trên hệ thống");
 
             RuleFor(x => x.BranchID)
@@ -128,19 +129,19 @@ namespace Shop.Application.Features.TacitWorks.TacitFeature.Commands.CreateTacit
             RuleFor(x => x.StartUp_Year)
                 .NotEmpty()
                 .WithMessage("Năm khởi công không được trống")
-                .Must((x) =>  _commonRepository.IsYearStartFinish(x))
+                .Must((x) => _commonRepository.IsYearStartFinish(x))
                 .WithMessage("Năm khởi công không tồn tại trên hệ thống");
 
             RuleFor(x => x.Finish_Quarter)
                 .NotEmpty()
                 .WithMessage("Hoàn Thành không được trống")
-                .MustAsync(async (x,cancellation) => await _commonRepository.IsTList(x, 6))
+                .MustAsync(async (x, cancellation) => await _commonRepository.IsTList(x, 6))
                 .WithMessage("Hoàn Thành không tồn tại trên hệ thống");
 
             RuleFor(x => x.Finish_Year)
                .NotEmpty()
                .WithMessage("Năm hoàn thành không được trống")
-               .Must( (x) =>  _commonRepository.IsYearStartFinish(x))
+               .Must((x) => _commonRepository.IsYearStartFinish(x))
                .WithMessage("Năm hoàn thành không tồn tại trên hệ thống");
 
             RuleFor(x => x.InvesID)
@@ -158,7 +159,7 @@ namespace Shop.Application.Features.TacitWorks.TacitFeature.Commands.CreateTacit
             RuleFor(x => x.TypeTacit)
              .NotEmpty()
              .WithMessage("Loại công trình không được trống")
-             .MustAsync(async (x,cancellation) => await _commonRepository.IsTArray(x, 14))
+             .MustAsync(async (x, cancellation) => await _commonRepository.IsTArray(x, 14))
              .WithMessage("Loại công trình không tồn tại trên hệ thống");
         }
     }

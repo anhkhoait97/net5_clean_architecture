@@ -1,7 +1,4 @@
-using AutoMapper;
 using MediatR;
-using Shop.Application.Interfaces.INFPortObject;
-using Shop.Domain.Entities;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -55,10 +52,8 @@ namespace Shop.Application.Features.Example.Test.Commands.Create
 
     public class CreateTacitCommandHandler : IRequestHandler<CreateTestCommand, long>
     {
-
         public CreateTacitCommandHandler()
         {
-
         }
 
         public Task<long> Handle(CreateTestCommand request, CancellationToken cancellationToken)

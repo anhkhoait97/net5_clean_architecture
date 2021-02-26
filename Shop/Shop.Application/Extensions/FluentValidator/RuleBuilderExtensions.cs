@@ -1,17 +1,15 @@
 using FluentValidation;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace Shop.Application.Extensions.FluentValidator
 {
     public static class RuleBuilderExtensions
     {
-        //Declare format string regex 
+        //Declare format string regex
         private static readonly string patternTacitCode = @"^[A-Z]{4}[0-9]{5}$";
+
         private static readonly string patternPopName = @"^[A-Z]{4}[0-9]{3}$";
         private static readonly string patternBellowName = @"^[A-Z]{4}[0-9]{5}.[0-9]{3}\/[B]{1}$";
         private static readonly string patternGanivoName = @"^[A-Z]{4}[0-9]{5}.[0-9]{3}\/[G]{1}$";
@@ -25,6 +23,7 @@ namespace Shop.Application.Extensions.FluentValidator
         private static readonly string patternPipePlugDetailName = @"^[A-Z]{4}[0-9]{5}.[0-9]{3}\/[O]{1}.[0-9A-Z]{2}$";
         private static readonly string patternCablePonName = @"^[A-Z]{4}[0-9]{3}.[0-9]{4}\/[CO|CU|SO]{2}$";
         private static readonly string patternCableRTName = @"^[A-Z]{4}[0-9]{6}\/[CO|CU|SO]{2}$";
+
         #region CUSTOM_VALIDATION_COMMON
 
         public static IRuleBuilderOptions<T, string> RegexTacitCode<T>(this IRuleBuilder<T, string> ruleBuilder)
@@ -32,48 +31,57 @@ namespace Shop.Application.Extensions.FluentValidator
             return ruleBuilder.Must(tacitCode => CheckRegexTacitCode(tacitCode))
                 .WithMessage("Mã Công Trình không hợp lệ");
         }
+
         public static IRuleBuilderOptions<T, string> RegexPopName<T>(this IRuleBuilder<T, string> ruleBuilder)
         {
             return ruleBuilder.Must(popName => CheckRegexPopName(popName))
                 .WithMessage("Tên Pop không hợp lệ");
         }
+
         public static IRuleBuilderOptions<T, string> RegexBellowName<T>(this IRuleBuilder<T, string> ruleBuilder)
         {
             return ruleBuilder.Must(bellowName => CheckRegexBellowName(bellowName))
                 .WithMessage("Tên Bể Cáp không hợp lệ");
         }
+
         public static IRuleBuilderOptions<T, string> RegexGanivoName<T>(this IRuleBuilder<T, string> ruleBuilder)
         {
             return ruleBuilder.Must(ganivoName => CheckRegexGanivoName(ganivoName))
                 .WithMessage("Tên Ganivo không hợp lệ");
         }
+
         public static IRuleBuilderOptions<T, string> RegexDeviceName<T>(this IRuleBuilder<T, string> ruleBuilder)
         {
             return ruleBuilder.Must(deviceName => CheckRegexDeviceName(deviceName))
                 .WithMessage("Tên Thiết Bị không hợp lệ");
         }
+
         public static IRuleBuilderOptions<T, string> RegexSizeBellow<T>(this IRuleBuilder<T, string> ruleBuilder)
         {
             return ruleBuilder.Must(Size => CheckRegexSizeBellow(Size))
                 .WithMessage("Kích thước không hợp lệ");
         }
+
         public static IRuleBuilderOptions<T, string> RegexPosition<T>(this IRuleBuilder<T, string> ruleBuilder)
         {
             return ruleBuilder.Must(Pos => CheckRegexPosition(Pos))
                 .WithMessage("Tọa độ không đúng định dạng");
         }
+
         public static IRuleBuilderOptions<T, string> IsDeviceWithConnectTypeValid<T>(this IRuleBuilder<T, string> ruleBuilder, int typeConnect)
         {
             // typeConnect: 2 - Bể | 3 - Ganivo
             return ruleBuilder.Must(deviceName => IsDeviceWithConnectTypeValid(deviceName, typeConnect))
                 .WithMessage("Thiết bị không thuộc loại kết nối hiện tại");
         }
+
         public static IRuleBuilderOptions<T, string> IsNumber<T>(this IRuleBuilder<T, string> ruleBuilder)
         {
             //validate number
             return ruleBuilder.Must(number => IsNumber(number))
                 .WithMessage("Sai định dạng kiểu số nguyên, Vui lòng kiểm tra lại");
         }
+
         public static IRuleBuilderOptions<T, string> IsDateTime<T>(this IRuleBuilder<T, string> ruleBuilder)
         {
             //validate number
@@ -116,21 +124,25 @@ namespace Shop.Application.Extensions.FluentValidator
             return ruleBuilder.Must(item => CheckIsInArray(arr, item))
                 .WithMessage("Không nằm trong danh sách cho phép");
         }
+
         public static IRuleBuilderOptions<T, string> IsExistInArray<T>(this IRuleBuilder<T, string> ruleBuilder, string[] arr)
         {
             return ruleBuilder.Must(item => CheckIsInArray(arr, item))
                 .WithMessage("Không nằm trong danh sách cho phép");
         }
+
         public static IRuleBuilderOptions<T, string> RegexCablePonName<T>(this IRuleBuilder<T, string> ruleBuilder)
         {
             return ruleBuilder.Must(cableName => CheckRegexCablePonName(cableName))
                 .WithMessage("Tên Cable không hợp lệ");
         }
+
         public static IRuleBuilderOptions<T, string> RegexCableRTName<T>(this IRuleBuilder<T, string> ruleBuilder)
         {
             return ruleBuilder.Must(cableName => CheckRegexCableRTName(cableName))
                 .WithMessage("Tên Cable không hợp lệ");
         }
+
         #endregion CUSTOM_VALIDATION_COMMON
 
         #region Function Regex by static patterns
@@ -199,11 +211,13 @@ namespace Shop.Application.Extensions.FluentValidator
             var regex = new Regex(patternSizeBellow);
             return regex.IsMatch(Size);
         }
+
         private static bool IsDateTime(string Date)
         {
             var isDate = DateTime.TryParse(Date, out DateTime n);
             return isDate;
         }
+
         private static bool CheckRegexPhoneNumber(string phoneNumber)
         {
             var regex = new Regex(patternPhoneNumber);
@@ -243,16 +257,19 @@ namespace Shop.Application.Extensions.FluentValidator
         {
             return arr.Contains(item);
         }
+
         private static bool CheckRegexCablePonName(string cableName)
         {
             var regex = new Regex(patternCablePonName);
             return regex.IsMatch(cableName);
         }
+
         private static bool CheckRegexCableRTName(string cableName)
         {
             var regex = new Regex(patternCableRTName);
             return regex.IsMatch(cableName);
         }
     }
-    #endregion
+
+    #endregion Function Regex by static patterns
 }

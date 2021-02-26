@@ -1,4 +1,3 @@
-using System;
 namespace Shop.Domain.Entities.INFPort
 {
     public class RemoveDevice_PON

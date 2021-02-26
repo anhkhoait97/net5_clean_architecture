@@ -17,5 +17,4 @@ namespace Shop.Domain.Entities.INFPortObject
         public string UpdateBy { get; set; }
         public int? Flag { get; set; }
     }
-
 }

@@ -1,5 +1,6 @@
 using Shop.Domain.Common;
 using System;
+
 namespace Shop.Domain.Entities.INFPort
 {
     public class PON_Device : BaseEntity

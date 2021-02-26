@@ -13,5 +13,4 @@ namespace Shop.Domain.Entities.INFPortObject
         public long? ChannelID { get; set; }
         public string ChannelName { get; set; }
     }
-
 }

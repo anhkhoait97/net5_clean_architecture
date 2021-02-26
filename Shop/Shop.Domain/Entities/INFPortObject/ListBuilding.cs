@@ -26,4 +26,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public string PartnerName { get; set; }
     }
 }
-

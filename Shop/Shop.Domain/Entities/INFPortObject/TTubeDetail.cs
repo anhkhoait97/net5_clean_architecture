@@ -26,5 +26,4 @@ namespace Shop.Domain.Entities.INFPortObject
         public string CoordinatesXSectionEnd { get; set; }
         public string CoordinatesYSectionEnd { get; set; }
     }
-
 }
