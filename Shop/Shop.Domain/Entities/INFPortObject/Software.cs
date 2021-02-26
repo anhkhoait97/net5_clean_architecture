@@ -38,5 +38,4 @@ namespace Shop.Domain.Entities.INFPortObject
         public string Name { get; set; }
         public string VersionCI { get; set; }
     }
-
 }

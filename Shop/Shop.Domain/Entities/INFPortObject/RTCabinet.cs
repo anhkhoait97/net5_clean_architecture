@@ -28,4 +28,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public string Coordinate { get; set; }
     }
 }
-

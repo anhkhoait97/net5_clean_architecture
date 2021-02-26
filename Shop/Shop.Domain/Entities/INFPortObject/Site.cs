@@ -28,4 +28,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public string INFMaintain { get; set; }
     }
 }
-

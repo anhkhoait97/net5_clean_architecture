@@ -12,4 +12,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public string OLT { get; set; }
     }
 }
-

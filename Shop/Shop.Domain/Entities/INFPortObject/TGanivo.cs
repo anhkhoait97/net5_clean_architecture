@@ -35,5 +35,4 @@ namespace Shop.Domain.Entities.INFPortObject
         public int? TypeObject { get; set; }
         public int? TypeDevice { get; set; }
     }
-
 }

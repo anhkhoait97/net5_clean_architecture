@@ -1,8 +1,8 @@
-using Microsoft.Extensions.DependencyInjection;
 using FluentValidation;
 using MediatR;
-using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 using Shop.Application.Behaviours;
+using System.Reflection;
 
 namespace Shop.Application.Extensions
 {

@@ -32,5 +32,4 @@ namespace Shop.Domain.Entities.INFPortObject
         public string AttachedFilePath { get; set; }
         public string Construction_POP { get; set; }
     }
-
 }

@@ -17,4 +17,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public int? FaceID { get; set; }
     }
 }
-

@@ -43,4 +43,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public int? TypeTacit { get; set; }
     }
 }
-

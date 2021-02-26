@@ -27,4 +27,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public int? OnRailIndexingNumber { get; set; }
     }
 }
-

@@ -1,12 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Shop.Application.Common.Interfaces;
 using Shop.Application.Common.Models;
-using System;
-using System.Collections.Generic;
+using Shop.Application.Interfaces.Shared;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Shop.Infrastructure.Identity

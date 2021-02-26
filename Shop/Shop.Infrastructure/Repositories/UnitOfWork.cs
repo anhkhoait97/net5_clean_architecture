@@ -1,11 +1,7 @@
-using Shop.Application.Common.Interfaces.Repositories;
-using Shop.Application.Common.Interfaces.Shared;
+using Shop.Application.Interfaces.Shared;
 using Shop.Infrastructure.Persistence.Data.INFPort;
 using Shop.Infrastructure.Persistence.Data.INFPortObject;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -14,9 +10,9 @@ namespace Shop.Infrastructure.Repositories
     public static class UnitOfWork
     {
         #region INFPort
+
         public class INFPort : IUnitOfWork.INFPort
         {
- 
             private readonly INFPortContext _dbContext;
             private bool disposed;
 
@@ -57,9 +53,10 @@ namespace Shop.Infrastructure.Repositories
             }
         }
 
+        #endregion INFPort
 
-        #endregion
         #region INFPortObject
+
         public class INFPortObject : IUnitOfWork.INFPortObject
         {
             private readonly INFPortObjectContext _dbContext;
@@ -101,7 +98,7 @@ namespace Shop.Infrastructure.Repositories
                 disposed = true;
             }
         }
-        #endregion
 
+        #endregion INFPortObject
     }
 }

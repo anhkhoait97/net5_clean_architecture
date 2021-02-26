@@ -1,11 +1,6 @@
-using IdentityServer4.EntityFramework.Options;
-using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using Shop.Application.Common.Interfaces;
+using Shop.Application.Interfaces.Shared;
 using Shop.Domain.Entities.INFPortObject;
-using Shop.Infrastructure.Identity;
-using System.Reflection;
 
 namespace Shop.Infrastructure.Persistence.Data.INFPortObject
 {
@@ -14,7 +9,6 @@ namespace Shop.Infrastructure.Persistence.Data.INFPortObject
         public INFPortObjectContext(
             DbContextOptions<INFPortObjectContext> options) : base(options)
         {
-
         }
 
         public DbSet<Tacit> Tacit { get; set; }

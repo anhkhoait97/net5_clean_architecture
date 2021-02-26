@@ -1,11 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Shop.Application.Common.Interfaces;
-using Shop.Domain.Entities.INFPortObject;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Shop.Application.Interfaces.Shared;
+using Shop.Domain.Entities.INFPort;
 
 namespace Shop.Infrastructure.Persistence.Data.INFPort
 {
@@ -13,9 +8,8 @@ namespace Shop.Infrastructure.Persistence.Data.INFPort
     {
         public INFPortContext(DbContextOptions<INFPortContext> options) : base(options)
         {
-
         }
 
-        public DbSet<Tacit> Tacits { get; set; }
+        public DbSet<PON_Device> PON_Device { get; set; }
     }
 }

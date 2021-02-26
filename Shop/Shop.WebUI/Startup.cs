@@ -1,14 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using NSwag;
-using NSwag.Generation.Processors.Security;
 using Shop.Application.Extensions;
 using Shop.Infrastructure.Extensions;
-using System.Linq;
 
 namespace Shop.WebUI
 {
@@ -18,6 +14,7 @@ namespace Shop.WebUI
         {
             _configuration = configuration;
         }
+
         public IConfiguration _configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -26,9 +23,9 @@ namespace Shop.WebUI
         {
             services.AddInfrastructure(_configuration);
             services.AddApplication();
-            services.AddSwaggerDocument();
+            services.AddControllers();
             services.AddRazorPages();
-           
+            services.AddSwaggerDocument(o => o.Title = " API");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,11 +37,8 @@ namespace Shop.WebUI
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseSwaggerUi3(settings =>
-            {
-                settings.Path = "/api";
-                settings.DocumentPath = "/api/specification.json";
-            });
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
 
             app.UseRouting();
             //app.UseEndpoints(endpoints =>
@@ -58,7 +52,8 @@ namespace Shop.WebUI
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                    pattern: "{controller}/{action=Index}/{id?}"
+                    );
                 endpoints.MapRazorPages();
             });
         }

@@ -27,5 +27,4 @@ namespace Shop.Domain.Entities.INFPortObject
         public string PhoneKey2 { get; set; }
         public string EmailKey2 { get; set; }
     }
-
 }

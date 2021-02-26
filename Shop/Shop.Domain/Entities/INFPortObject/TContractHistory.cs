@@ -37,4 +37,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public int? IsPi { get; set; }
     }
 }
-

@@ -37,5 +37,4 @@ namespace Shop.Domain.Entities.INFPortObject
         public string UpdateBy { get; set; }
         public int? TypeCable { get; set; }
     }
-
 }

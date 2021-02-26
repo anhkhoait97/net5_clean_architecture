@@ -36,4 +36,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public string StoragePlace { get; set; }
     }
 }
-

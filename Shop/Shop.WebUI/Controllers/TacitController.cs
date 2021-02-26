@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Shop.Application.Features.TacitWorks.Tacit.Commands.CreateTacit;
-using Shop.Application.Features.TacitWorks.Tacit.Queries.GetTacits;
+using Shop.Application.Features.TacitWorks.TacitFeature.Commands.CreateTacit;
+using Shop.Application.Features.TacitWorks.TacitFeature.Queries.GetTacits;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

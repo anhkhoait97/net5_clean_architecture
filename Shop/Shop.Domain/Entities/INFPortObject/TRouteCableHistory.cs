@@ -35,4 +35,3 @@ namespace Shop.Domain.Entities.INFPortObject
         public long? ContractID { get; set; }
     }
 }
-
