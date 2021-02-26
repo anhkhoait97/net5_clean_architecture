@@ -1,7 +1,7 @@
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Configuration;
-using Shop.Application.Common.Interfaces.Repositories.Common;
+using Shop.Application.Interfaces.Common;
 using System;
 using System.Collections.Generic;
 using System.Data;

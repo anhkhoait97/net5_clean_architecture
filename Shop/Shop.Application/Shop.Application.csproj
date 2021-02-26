@@ -20,7 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common\Interfaces\Repositories\INFPort\" />
+    <Folder Include="Features\Example\Test\Commands\Delete\" />
+    <Folder Include="Features\Example\Test\Queries\" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,12 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using Shop.Application.Interfaces.Shared;
 using Shop.Infrastructure.Identity;
 
 namespace Shop.Infrastructure.Persistence.Data.Identity
 {
-    public class IdentityContext : IdentityDbContext<ApplicationUser>
+    public class IdentityContext : IdentityDbContext<ApplicationUser>, IIdentityContext
     {
         public IdentityContext(DbContextOptions<IdentityContext> options) : base(options)
         {

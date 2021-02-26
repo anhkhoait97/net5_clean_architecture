@@ -9,7 +9,6 @@
     <Folder Include="Persistence\Data\INFPort\Migrations\" />
     <Folder Include="Persistence\Data\INFPortObject\Configurations\" />
     <Folder Include="Persistence\Data\INFPortObject\Migrations\" />
-    <Folder Include="Repositories\INFPort\" />
   </ItemGroup>
 
   <ItemGroup>

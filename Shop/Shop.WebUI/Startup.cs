@@ -26,9 +26,9 @@ namespace Shop.WebUI
         {
             services.AddInfrastructure(_configuration);
             services.AddApplication();
-            services.AddSwaggerDocument();
+            services.AddControllers();
             services.AddRazorPages();
-           
+            services.AddSwaggerDocument(o => o.Title = " API");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -40,11 +40,8 @@ namespace Shop.WebUI
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseSwaggerUi3(settings =>
-            {
-                settings.Path = "/api";
-                settings.DocumentPath = "/api/specification.json";
-            });
+            app.UseOpenApi();
+            app.UseSwaggerUi3();
 
             app.UseRouting();
             //app.UseEndpoints(endpoints =>
@@ -58,7 +55,8 @@ namespace Shop.WebUI
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller}/{action=Index}/{id?}");
+                    pattern: "{controller}/{action=Index}/{id?}"
+                    );
                 endpoints.MapRazorPages();
             });
         }

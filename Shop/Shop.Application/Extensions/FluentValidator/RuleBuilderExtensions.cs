@@ -11,20 +11,20 @@ namespace Shop.Application.Extensions.FluentValidator
     public static class RuleBuilderExtensions
     {
         //Declare format string regex 
-        private static string patternTacitCode = @"^[A-Z]{4}[0-9]{5}$";
-        private static string patternPopName = @"^[A-Z]{4}[0-9]{3}$";
-        private static string patternBellowName = @"^[A-Z]{4}[0-9]{5}.[0-9]{3}\/[B]{1}$";
-        private static string patternGanivoName = @"^[A-Z]{4}[0-9]{5}.[0-9]{3}\/[G]{1}$";
-        private static string patternDeviceName = @"^[A-Z]{4}[0-9]{5}.[0-9]{3}\/[A-Z]{1}$";
-        private static string patternSizeBellow = @"^\S\d*\.?\d*[X]\S\d*\.?\d*[X]\S\d*\.?\d*$";
-        private static string patternPosition = @"^[-]?\d*[ ][-]?\d*$";
-        private static string patternPhoneNumber = @"/(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/";
-        private static string patternTubeName = @"^[A-Z]{4}[0-9]{5}.[0-9]{3}/[D]{1}$";
-        private static string patternPipePlugName = @"^[A-Z]{4}[0-9]{5}.[0-9]{3}/[O]{1}$";
-        private static string patternTubeDetailName = @"^[A-Z]{4}[0-9]{5}.[0-9]{3}\/[D]{1}.[0-9A-Z]{2}$";
-        private static string patternPipePlugDetailName = @"^[A-Z]{4}[0-9]{5}.[0-9]{3}\/[O]{1}.[0-9A-Z]{2}$";
-        private static string patternCablePonName = @"^[A-Z]{4}[0-9]{3}.[0-9]{4}\/[CO|CU|SO]{2}$";
-        private static string patternCableRTName = @"^[A-Z]{4}[0-9]{6}\/[CO|CU|SO]{2}$";
+        private static readonly string patternTacitCode = @"^[A-Z]{4}[0-9]{5}$";
+        private static readonly string patternPopName = @"^[A-Z]{4}[0-9]{3}$";
+        private static readonly string patternBellowName = @"^[A-Z]{4}[0-9]{5}.[0-9]{3}\/[B]{1}$";
+        private static readonly string patternGanivoName = @"^[A-Z]{4}[0-9]{5}.[0-9]{3}\/[G]{1}$";
+        private static readonly string patternDeviceName = @"^[A-Z]{4}[0-9]{5}.[0-9]{3}\/[A-Z]{1}$";
+        private static readonly string patternSizeBellow = @"^\S\d*\.?\d*[X]\S\d*\.?\d*[X]\S\d*\.?\d*$";
+        private static readonly string patternPosition = @"^[-]?\d*[ ][-]?\d*$";
+        private static readonly string patternPhoneNumber = @"/(03|05|07|08|09|01[2|6|8|9])+([0-9]{8})\b/";
+        private static readonly string patternTubeName = @"^[A-Z]{4}[0-9]{5}.[0-9]{3}/[D]{1}$";
+        private static readonly string patternPipePlugName = @"^[A-Z]{4}[0-9]{5}.[0-9]{3}/[O]{1}$";
+        private static readonly string patternTubeDetailName = @"^[A-Z]{4}[0-9]{5}.[0-9]{3}\/[D]{1}.[0-9A-Z]{2}$";
+        private static readonly string patternPipePlugDetailName = @"^[A-Z]{4}[0-9]{5}.[0-9]{3}\/[O]{1}.[0-9A-Z]{2}$";
+        private static readonly string patternCablePonName = @"^[A-Z]{4}[0-9]{3}.[0-9]{4}\/[CO|CU|SO]{2}$";
+        private static readonly string patternCableRTName = @"^[A-Z]{4}[0-9]{6}\/[CO|CU|SO]{2}$";
         #region CUSTOM_VALIDATION_COMMON
 
         public static IRuleBuilderOptions<T, string> RegexTacitCode<T>(this IRuleBuilder<T, string> ruleBuilder)
@@ -176,19 +176,18 @@ namespace Shop.Application.Extensions.FluentValidator
             bool result = false;
             if (typeConnect == 2)
             {
-                result = deviceName.EndsWith("B") ? true : false;
+                result = deviceName.EndsWith("B");
             }
             else if (typeConnect == 3)
             {
-                result = deviceName.EndsWith("G") ? true : false;
+                result = deviceName.EndsWith("G");
             }
             return result;
         }
 
         private static bool IsNumber(string number)
         {
-            float n;
-            var isNumber = float.TryParse(number, out n);
+            var isNumber = float.TryParse(number, out float n);
             if (isNumber)
                 return true;
             else
@@ -202,8 +201,7 @@ namespace Shop.Application.Extensions.FluentValidator
         }
         private static bool IsDateTime(string Date)
         {
-            DateTime n;
-            var isDate = DateTime.TryParse(Date, out n);
+            var isDate = DateTime.TryParse(Date, out DateTime n);
             return isDate;
         }
         private static bool CheckRegexPhoneNumber(string phoneNumber)

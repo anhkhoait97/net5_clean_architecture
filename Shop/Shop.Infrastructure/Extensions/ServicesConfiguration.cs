@@ -4,10 +4,9 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Shop.Application.Common.Interfaces;
-using Shop.Application.Common.Interfaces.Repositories;
-using Shop.Application.Common.Interfaces.Repositories.Common;
-using Shop.Application.Common.Interfaces.Repositories.INFPortObject;
+using Shop.Application.Interfaces.Common;
+using Shop.Application.Interfaces.INFPortObject;
+using Shop.Application.Interfaces.Shared;
 using Shop.Infrastructure.Identity;
 using Shop.Infrastructure.Persistence.Data.Identity;
 using Shop.Infrastructure.Persistence.Data.INFPort;
@@ -62,6 +61,7 @@ namespace Shop.Infrastructure.Extensions
                 services.AddDbContext<INFPortObjectContext>(options => options.UseSqlServer(configuration.GetConnectionString("INFPortObjectConnection")));
                 services.AddDbContext<INFPortContext>(options => options.UseSqlServer(configuration.GetConnectionString("INFPortConnection")));
             }
+            services.AddScoped<IIdentityContext>(provider => provider.GetService<IdentityContext>());
             services.AddScoped<IINFPortContext>(provider => provider.GetService<INFPortContext>());
             services.AddScoped<IINFPortObjectContext>(provider => provider.GetService<INFPortObjectContext>());
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>

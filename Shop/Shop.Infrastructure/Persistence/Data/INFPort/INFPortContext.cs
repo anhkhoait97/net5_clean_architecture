@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Shop.Application.Common.Interfaces;
+using Shop.Application.Interfaces.Shared;
+using Shop.Domain.Entities.INFPort;
 using Shop.Domain.Entities.INFPortObject;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,6 @@ namespace Shop.Infrastructure.Persistence.Data.INFPort
         {
 
         }
-
-        public DbSet<Tacit> Tacits { get; set; }
+        public DbSet<PON_Device> PON_Device { get; set; }
     }
 }
