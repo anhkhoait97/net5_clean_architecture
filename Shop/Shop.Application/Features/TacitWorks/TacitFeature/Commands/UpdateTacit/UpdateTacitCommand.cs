@@ -1,6 +1,7 @@
 using AutoMapper;
 using MediatR;
 using Shop.Application.Interfaces.INFPortObject;
+using Shop.Domain.Entities.INFPortObject;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
@@ -65,7 +66,7 @@ namespace Shop.Application.Features.TacitWorks.TacitFeature.Commands.UpdateTacit
 
         public Task<long> Handle(UpdateTacitCommand request, CancellationToken cancellationToken)
         {
-            var tacit = _mapper.Map<UpdateTacitCommand, Domain.Entities.INFPortObject.Tacit>(request);
+            var tacit = _mapper.Map<UpdateTacitCommand, Tacit>(request);
             return _tacitRepository.UpdateTacit(tacit);
         }
     }

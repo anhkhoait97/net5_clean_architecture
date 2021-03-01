@@ -1,10 +1,11 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AspNetCoreHero.Results" Version="1.1.1" />
     <PackageReference Include="AutoMapper" Version="10.1.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="8.1.1" />
     <PackageReference Include="FluentValidation" Version="9.5.1" />
@@ -20,8 +21,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DTOs\Logs\" />
+    <Folder Include="DTOs\Mail\" />
     <Folder Include="Features\Example\Test\Commands\Delete\" />
     <Folder Include="Features\Example\Test\Queries\" />
+    <Folder Include="Models\" />
   </ItemGroup>
 
 </Project>

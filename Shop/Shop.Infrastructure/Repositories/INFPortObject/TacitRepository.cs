@@ -1,6 +1,7 @@
 using Dapper;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
+using Shop.Application.Features.TacitWorks.TacitFeature.Commands.SearchTacit;
 using Shop.Application.Interfaces.INFPortObject;
 using Shop.Application.Interfaces.Shared;
 using Shop.Domain.Entities.INFPortObject;
@@ -113,6 +114,23 @@ namespace Shop.Infrastructure.Repositories.INFPortObject
             await connection.ExecuteAsync("fpt_spUpdate_Tacit_ID", inputParam, commandType: CommandType.StoredProcedure);
             var result = inputParam.Get<long>("Result");
             return result;
+        }
+
+        public async Task<IEnumerable<SearchTacitRespone>> SearchTacit(SearchTacitCommand request)
+        {
+            using (var connection = new SqlConnection(_repository.StrConnect))
+            {
+                DynamicParameters inputParam = new DynamicParameters(new
+                {
+                    LocationID = request.LocationId,
+                    BranchID = !string.IsNullOrWhiteSpace(request.BranchId) ? request.BranchId : "%",
+                    Code = !string.IsNullOrWhiteSpace(request.Code) ? request.Code : "%",
+                    InvestID = !string.IsNullOrWhiteSpace(request.InvestId) ? request.InvestId : "%",
+                    ManagerUnitID = !string.IsNullOrWhiteSpace(request.ManagetUnitId) ? request.ManagetUnitId : "%",
+                    TypeTacit = !string.IsNullOrWhiteSpace(request.TypeTacit) ? request.TypeTacit : "%"
+                });
+                return await connection.QueryAsync<SearchTacitRespone>("fpt_spSearch_Tacit", inputParam, commandType: CommandType.StoredProcedure);
+            }
         }
     }
 }
